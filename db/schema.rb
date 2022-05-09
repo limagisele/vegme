@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_08_055518) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_09_080459) do
   create_table "addresses", force: :cascade do |t|
     t.string "street"
     t.string "city"
@@ -19,6 +19,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_08_055518) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
+
+  create_table "menu_items", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.decimal "price", precision: 5, scale: 2
+    t.boolean "available"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_menu_items_on_user_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -40,9 +51,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_08_055518) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "first_name"
-    t.string "last_name"
-    t.integer "phone"
+    t.string "full_name"
+    t.string "phone"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -56,4 +66,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_08_055518) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "menu_items", "users"
 end
