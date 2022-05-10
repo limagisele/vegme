@@ -4,6 +4,10 @@ class MenuItemsController < ApplicationController
   end
 
   def show
-    @restaurant_menu = User.find(params[:id]).menu_items
+    @restaurant = User.find(params[:id]).menu_items
+  end
+
+  def show_item
+    @item = MenuItem.find(params[:id])
   end
 end
