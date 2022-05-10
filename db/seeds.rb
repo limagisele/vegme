@@ -21,6 +21,12 @@ params2 = { restaurant2: { email: 'r2@test.com', password: '123456', full_name: 
 restaurant2 = User.create(params2[:restaurant2])
 restaurant2.add_role :restaurant
 
+restaurant1.menu_items.create(name: 'Veggie Burger', description: 'Delicious burger with chickpea patty, lettuce, tomato and BBQ sauce', price: 18, available: true)
+restaurant1.menu_items.create(name: 'Vegan Pizza', description: 'Pizza with vegan cheese, eggplant, capsicum and olives', price: 15, available: false)
+restaurant2.menu_items.create(name: 'Falafel Wrap', description: 'Falafel wrap with hummus and salad', price: 16, available: true)
+restaurant2.menu_items.create(name: 'Chips', description: 'Thin and crispy chips', price: 6, available: true)
+
 puts "Users: #{User.count}"
 puts "Roles: #{Role.count}"
 puts "Adresses: #{Address.count}"
+puts "Menu Items: #{MenuItem.count}"
