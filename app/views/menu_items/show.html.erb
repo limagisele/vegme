@@ -1,5 +1,7 @@
-<h1>Restaurant Menu</h1>
-<% @restaurant.each do |item| %>
-    <p><%= link_to item.name, item_path(item.id)  %></p>
-    <p><%= item.price %></p>
-<% end %>
+<h1>Menu Item</h1>
+<p><%= @menu_item.name %></p>
+<p><%= @menu_item.description %></p>
+<p><%= @menu_item.price %></p>
+<%= link_to 'Back to Menu', menu_path(@menu_item.user.id)%>
+
+
