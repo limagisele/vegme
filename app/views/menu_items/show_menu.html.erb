@@ -1,0 +1,5 @@
+<h1>Restaurant Menu</h1>
+<% @restaurant.each do |menu_item| %>
+    <p><%= link_to menu_item.name, menu_item %></p>
+    <p><%= menu_item.price %></p>
+<% end %>
