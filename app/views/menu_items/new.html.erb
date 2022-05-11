@@ -1,1 +1,28 @@
-<h1>New</h1>
+<h1>New Menu Item</h1>
+
+<%= form_with(model: @menu_item, data: {turbo: false}) do |f| %>
+    <fieldset>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </fieldset>
+    <fieldset>
+        <%= f.label :description %>
+        <%= f.text_field :description %>
+    </fieldset>
+    <fieldset>
+        <%= f.label :price %>
+        <%= f.number_field :price %>
+    </fieldset>
+    <fieldset>
+        <%= f.radio_button :available, true %>
+        <%= f.label :available, "Item is available" %>
+        <%= f.radio_button :available, false %>
+        <%= f.label :not_available, "Item is SOLD OUT" %>
+    </fieldset>
+    <fieldset>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+    </fieldset>
+    <fieldset>
+        <%= f.submit%>
+    </fieldset>
+<% end %>
