@@ -1,7 +1,9 @@
 class MenuItemsController < ApplicationController
   # DEBUG ONLY - REMOVE FOR PRODUCTION!
   # skip_before_action :verify_authenticity_token
-  before_action :set_menu_item, only: [:show, :update, :destroy]
+  before_action :authenticate_user!, except: [:index]
+  before_action :check_auth
+  before_action :set_menu_item, only: [:show, :update, :edit, :destroy]
 
   def index
     @restaurants = Role.find_by_name('restaurant').users
@@ -39,6 +41,10 @@ class MenuItemsController < ApplicationController
   end
 
   private
+
+  def check_auth
+    authorize MenuItem
+  end
 
   def menu_item_params
     return params.require(:menu_item).permit(:name, :description, :price, :available, :user_id)

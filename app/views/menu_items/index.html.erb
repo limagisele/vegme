@@ -1,5 +1,9 @@
 <h1>Restaurants</h1>
-
-<% @restaurants.each do |restaurant| %>
-    <p><%= link_to restaurant.full_name, menu_path(restaurant.id) %></p>
+<% if user_signed_in? && current_user.has_role?(:restaurant) %>
+    <% user = @restaurants.select { |restaurant| restaurant.id == current_user.id } %>
+    <p><%= link_to user[0].full_name, menu_path(user[0].id) %></p>
+<% else %>
+    <% @restaurants.each do |restaurant| %>
+        <p><%= link_to restaurant.full_name, menu_path(restaurant.id) %></p>
+    <% end %>
 <% end %>

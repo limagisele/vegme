@@ -1,6 +1,6 @@
 <h1>Restaurant Menu</h1>
 
-<%= link_to 'New Menu Item', menu_items_new_path, class: "btn btn-primary" %>
+<%= link_to 'New Menu Item', menu_items_new_path, class: "btn btn-primary" if policy(MenuItem).create? %>
 
 <% @restaurant.each do |menu_item| %>
     <p><%= link_to menu_item.name, menu_item %></p>

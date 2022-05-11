@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ApplicationPolicy
+class MenuItemPolicy
   attr_reader :user, :record
 
   def initialize(user, record)
@@ -9,15 +9,19 @@ class ApplicationPolicy
   end
 
   def index?
-    false
+    true
   end
 
   def show?
-    false
+    return @user
+  end
+
+  def show_menu?
+    return @user
   end
 
   def create?
-    false
+    return @user && @user.has_role?(:restaurant)
   end
 
   def new?
@@ -25,7 +29,7 @@ class ApplicationPolicy
   end
 
   def update?
-    false
+    return @user && @user.has_role?(:restaurant)
   end
 
   def edit?

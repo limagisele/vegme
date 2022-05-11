@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'menu_items/new', to: 'menu_items#new'
   get 'menu_items/:id', to: 'menu_items#show', as: 'menu_item'
   post 'menu_items', to: 'menu_items#create'
-  get 'menu_items/:id/edit', to: 'menu_items#edit'
+  get 'menu_items/:id/edit', to: 'menu_items#edit', as: 'edit_menu_item'
   patch 'menu_items/:id', to: 'menu_items#update'
   delete 'menu_items/:id', to: 'menu_items#destroy'
 
