@@ -1,6 +1,6 @@
 class MenuItemsController < ApplicationController
   # DEBUG ONLY - REMOVE FOR PRODUCTION!
-  skip_before_action :verify_authenticity_token
+  # skip_before_action :verify_authenticity_token
   before_action :set_menu_item, only: [:show, :update, :destroy]
 
   def index
@@ -8,14 +8,13 @@ class MenuItemsController < ApplicationController
   end
 
   def show_menu
-    @restaurant = User.find(params[:id]).menu_items
+    @restaurant = User.find(params[:id]).menu_items.order(:name)
   end
 
   def show
   end
 
   def new
-    p @user
     @menu_item = MenuItem.new
   end
 
