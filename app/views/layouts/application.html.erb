@@ -31,7 +31,7 @@
           </ul>
           <% if user_signed_in? %>
             <div class="ml-auto btn-toolbar p-3">
-              Welcome, <%= current_user.full_name.capta %>!
+              Welcome, <%= current_user.full_name %>!
             </div>
             <div class="ml-auto btn-toolbar">
               <%= button_to "Logout", destroy_user_session_path, class: "btn btn-light", method: :delete, form: { data: { turbo_confirm: "Do you want to log out?" } } %>
