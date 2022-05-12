@@ -1,17 +1,17 @@
 <%= form_with(model: @menu_item, data: {turbo: false}) do |f| %>
-    <fieldset>
+    <fieldset class="mb-2">
         <%= f.label :name %>
         <%= f.text_field :name %>
     </fieldset>
-    <fieldset>
+    <fieldset class="mb-2">
         <%= f.label :description %>
         <%= f.text_field :description %>
     </fieldset>
-    <fieldset>
+    <fieldset class="mb-2">
         <%= f.label :price %>
         <%= f.number_field :price %>
     </fieldset>
-    <fieldset>
+    <fieldset class="mb-2">
         <%= f.radio_button :available, true %>
         <%= f.label :available, "Item is available" %>
         <%= f.radio_button :available, false %>
@@ -19,6 +19,10 @@
     </fieldset>
     <fieldset>
         <%= f.hidden_field :user_id, value: current_user.id %>
+    </fieldset>
+    <fieldset class="mb-2">
+        <%= f.label :photo %>
+        <%= f.file_field :photo %>
     </fieldset>
     <fieldset>
         <%= f.submit%>

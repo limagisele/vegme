@@ -3,6 +3,7 @@
 <%= link_to 'New Menu Item', menu_items_new_path, class: "btn btn-outline-success my-3" if policy(MenuItem).create? %>
 
 <% @menu.each do |menu_item| %>
+    <div><%= cl_image_tag(menu_item.photo.key, crop: 'scale', width: 200, cloud_name: ENV['CLOUDINARY_CLOUD_NAME']) %></div>
     <p><%= link_to menu_item.name, menu_item %></p>
     <p><%= menu_item.price %></p>
 <% end %>

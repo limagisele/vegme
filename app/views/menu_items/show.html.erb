@@ -1,4 +1,6 @@
 <h1>Menu Item</h1>
+
+<%= cl_image_tag(@menu_item.photo.key, crop: 'scale', width: 200, cloud_name: ENV['CLOUDINARY_CLOUD_NAME']) if @menu_item.photo.attached? %>
 <p><%= @menu_item.name %></p>
 <p><%= @menu_item.description %></p>
 <p><%= @menu_item.price %></p>
@@ -7,6 +9,6 @@
     <%= link_to 'Edit', edit_menu_item_path(@menu_item), class: 'btn btn-outline-warning me-2' if policy(@menu_item).edit? %>
     <%= button_to('Delete', @menu_item, class: 'btn btn-outline-danger', method: :delete, form: { data: { turbo_confirm: "Do you want to delete '#{@menu_item.name}' from your menu?" } }) if policy(@menu_item).destroy? %>
 </div>
-<%= link_to 'Back to Menu', :back %>
+<%= link_to 'Back to Menu', menu_path(@menu_item.user.id) %>
 
 

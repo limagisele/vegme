@@ -37,6 +37,7 @@ class MenuItemsController < ApplicationController
 
   def destroy
     @restaurant_id = @menu_item.user_id
+    @menu_item.photo.purge
     @menu_item.destroy
     redirect_to menu_path(@restaurant_id)
   end
@@ -48,7 +49,7 @@ class MenuItemsController < ApplicationController
   end
 
   def menu_item_params
-    return params.require(:menu_item).permit(:name, :description, :price, :available, :user_id)
+    return params.require(:menu_item).permit(:name, :description, :price, :available, :user_id, :photo)
   end
 
   def set_menu_item
