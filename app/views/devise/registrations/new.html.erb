@@ -47,6 +47,16 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+  <div class="field">
+    <%= f.radio_button :roles, "customer" %>
+    <%= f.label :customer, "I'm a Customer willing to order food on VegMe." %>
+  </div>
+  
+  <div class="field">
+    <%= f.radio_button :roles, "restaurant" %>
+    <%= f.label :restaurant, "I'm a Restaurant willing to list a menu on VegMe." %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
