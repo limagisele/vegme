@@ -1,8 +1,10 @@
 <h1>Restaurant Menu</h1>
+<h3><%= @restaurant.full_name %></h3>
+<%= link_to 'New Menu Item', menu_items_new_path, class: "btn btn-outline-success my-3" if policy(MenuItem).create? %>
 
-<%= link_to 'New Menu Item', menu_items_new_path, class: "btn btn-primary" if policy(MenuItem).create? %>
-
-<% @restaurant.each do |menu_item| %>
+<% @menu.each do |menu_item| %>
     <p><%= link_to menu_item.name, menu_item %></p>
     <p><%= menu_item.price %></p>
 <% end %>
+
+<%= link_to 'Back to Listing', root_path %>
