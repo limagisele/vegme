@@ -19,7 +19,7 @@
         <td>
             <%= form_with(model: item, url: "/order_menu_items/#{item.id}") do |f| %>
                 <%= f.hidden_field :menu_item_id, value: item.menu_item.id %>
-                <%= f.number_field :quantity, value: item.quantity, in: 0..20 %>
+                <%= f.number_field :quantity, value: item.quantity, in: 1..20 %>
                 <%= f.submit "Update", class: 'btn btn-outline-primary btn-sm'%>
             <% end %>
         </td>
@@ -35,5 +35,5 @@
     </table>
     
     <h6>Total Order: $<%= @order.order_total_price %></h6>
-
+    <%= link_to 'Back to Menu', menu_path(@order_items[0].menu_item.user_id) %>
 <% end %>

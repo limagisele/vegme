@@ -4,6 +4,7 @@ class MenuItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :check_auth
   before_action :set_menu_item, only: [:show, :update, :edit, :destroy]
+  before_action :set_order, only: [:show]
 
   def index
     @restaurants = Role.find_by_name('restaurant').users
@@ -15,6 +16,7 @@ class MenuItemsController < ApplicationController
   end
 
   def show
+    @order_item = @order.order_menu_items.new
   end
 
   def new
@@ -54,5 +56,12 @@ class MenuItemsController < ApplicationController
 
   def set_menu_item
     @menu_item = MenuItem.find(params[:id])
+  end
+
+  def set_order
+    @order = Order.find(session[:order_id])
+  rescue ActiveRecord::RecordNotFound
+    @order = Order.create(user_id: current_user.id)
+    session[:order_id] = @order.id
   end
 end

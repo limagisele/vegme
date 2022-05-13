@@ -9,6 +9,7 @@ class OrderMenuItemsController < ApplicationController
 
   def create
     @order_item = @order.order_menu_items.create!(order_item_params)
+    redirect_to order_menu_items_path
   end
 
   def update
@@ -34,7 +35,7 @@ class OrderMenuItemsController < ApplicationController
   def order_params
     return params.require(:order).permit(:user_id)
   end
-  
+
   def set_order
     @order = Order.find(session[:order_id])
   rescue ActiveRecord::RecordNotFound
