@@ -9,7 +9,10 @@ Rails.application.routes.draw do
   patch 'menu_items/:id', to: 'menu_items#update'
   delete 'menu_items/:id', to: 'menu_items#destroy'
 
-  resources :orders
+  get 'order_menu_items', to: 'order_menu_items#index'
+  post 'order_menu_items', to: 'order_menu_items#create'
+  patch 'order_menu_items/:id', to: 'order_menu_items#update'
+  delete 'order_menu_items/:id', to: 'order_menu_items#destroy'
 
   devise_scope :user do
     # Redirects signing out users back to sign-in
