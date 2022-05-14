@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'order_menu_items', to: 'order_menu_items#index'
   post 'order_menu_items', to: 'order_menu_items#create'
   patch 'order_menu_items/:id', to: 'order_menu_items#update'
+  delete 'order_menu_items/delete_all', to: 'order_menu_items#destroy_all_items', as: 'destroy_all_items'
   delete 'order_menu_items/:id', to: 'order_menu_items#destroy'
 
   devise_scope :user do

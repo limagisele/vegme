@@ -24,7 +24,7 @@ class OrderMenuItemsController < ApplicationController
   end
 
   def destroy_all_items
-    @order_items.destroy
+    @order_items.destroy_all
     redirect_to order_menu_items_path
   end
 
