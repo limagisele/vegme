@@ -6,28 +6,29 @@ class OrderMenuItemsController < ApplicationController
 
   def index
     @order_items = @order.order_menu_items
-
-    session = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      customer_email: current_user.email,
-      line_items: [{
-        name: 'VegMe Order',
-        description: "Meal from #{@order.menu_items.first.user.full_name}",
-        images: ['https://res.cloudinary.com/limagisele/image/upload/v1652509895/VegMe_ljjeph.png'],
-        amount: (@order.order_total_price * 100).to_i,
-        currency: 'aud',
-        quantity: 1,
-      }],
-      payment_intent_data: {
-        metadata: {
-          order_id: @order.id,
-          user_id: current_user.id
-        }
-      },
-      success_url: "#{root_url}payments/success?orderId=#{@order.id}",
-      cancel_url: "#{root_url}order_menu_items"
-    )
-    @session_id = session.id
+    if current_user.has_role?(:customer)
+      session = Stripe::Checkout::Session.create(
+        payment_method_types: ['card'],
+        customer_email: current_user.email,
+        line_items: [{
+          name: 'VegMe Order',
+          description: "Meal from #{@order.menu_items.first.user.full_name}",
+          images: ['https://res.cloudinary.com/limagisele/image/upload/v1652509895/VegMe_ljjeph.png'],
+          amount: (@order.order_total_price * 100).to_i,
+          currency: 'aud',
+          quantity: 1,
+        }],
+        payment_intent_data: {
+          metadata: {
+            order_id: @order.id,
+            user_id: current_user.id
+          }
+        },
+        success_url: "#{root_url}payments/success?orderId=#{@order.id}",
+        cancel_url: "#{root_url}order_menu_items"
+      )
+      @session_id = session.id
+    end
   end
 
   def create

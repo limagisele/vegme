@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'payments/success'
   root 'menu_items#index'
   get 'menu_items', to: 'menu_items#index'
   get 'menu_items/menu/:id', to: 'menu_items#show_menu', as: 'menu'
