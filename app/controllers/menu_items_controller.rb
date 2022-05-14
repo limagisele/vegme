@@ -4,7 +4,7 @@ class MenuItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :check_auth
   before_action :set_menu_item, only: [:show, :update, :edit, :destroy, :add_to_order]
-  before_action :set_order, only: [:add_to_order]
+  before_action :set_order, only: [:show_menu, :add_to_order]
 
 
   def index
