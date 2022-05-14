@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   delete 'order_menu_items/:id', to: 'order_menu_items#destroy'
 
   get 'payments/success', to: 'payments#success'
+  post 'payments/webhook', to: 'payments#webhook'
 
   devise_scope :user do
     # Redirects signing out users back to sign-in
