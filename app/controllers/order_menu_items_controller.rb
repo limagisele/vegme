@@ -18,6 +18,10 @@ class OrderMenuItemsController < ApplicationController
     redirect_to order_menu_items_path
   end
 
+  def submit_order
+    
+  end
+
   def destroy
     @order_item.destroy
     redirect_to order_menu_items_path

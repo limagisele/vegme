@@ -35,8 +35,9 @@
     </table>
     
     <h6>Total Order: $<%= @order.order_total_price %></h6>
-
-    <%= button_to('Delete Order', destroy_all_items_path, class: 'btn btn-danger btn-sm', method: :delete) %>
-
+    <div class='btn-toolbar'>
+        <%= link_to 'Submit Order', submit_order_path, class: 'btn btn-success btn-sm me-3 my-3' %>
+        <%= button_to('Delete Order', destroy_all_items_path, class: 'btn btn-danger btn-sm my-3', method: :delete) %>
+    </div>
     <%= link_to 'Back to Menu', menu_path(@order_items[0].menu_item.user_id) %>
 <% end %>
