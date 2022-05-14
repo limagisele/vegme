@@ -6,7 +6,7 @@
 <p><%= @menu_item.price %></p>
 
 <% if user_signed_in? && current_user.has_role?(:customer) %>
-    <%= form_with model: @order_item do |f| %>
+    <%= form_with(model: @order_item, url: add_to_order_path) do |f| %>
         <%= f.hidden_field :menu_item_id, value: @menu_item.id %>
         <%= f.number_field :quantity, value: 1, in: 1..20 %>
         <%= f.submit 'Add to Order' %>

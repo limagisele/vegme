@@ -3,8 +3,9 @@ class MenuItemsController < ApplicationController
   # skip_before_action :verify_authenticity_token
   before_action :authenticate_user!, except: [:index]
   before_action :check_auth
-  before_action :set_menu_item, only: [:show, :update, :edit, :destroy]
-  before_action :set_order, only: [:show]
+  before_action :set_menu_item, only: [:show, :update, :edit, :destroy, :add_to_order]
+  before_action :set_order, only: [:add_to_order]
+
 
   def index
     @restaurants = Role.find_by_name('restaurant').users
@@ -16,7 +17,6 @@ class MenuItemsController < ApplicationController
   end
 
   def show
-    @order_item = @order.order_menu_items.new
   end
 
   def new
@@ -28,8 +28,18 @@ class MenuItemsController < ApplicationController
     redirect_to menu_item
   end
 
+  def add_to_order
+    if @order.menu_items.include?(@menu_item)
+      item = @menu_item.order_menu_items.find_by_order_id(@order.id)
+      quantity = item.quantity.to_i + params[:quantity].to_i
+      item.update(quantity: quantity)
+    else
+      @order.order_menu_items.create!(order_item_params)
+    end
+    redirect_to order_menu_items_path
+  end
+
   def edit
-    
   end
 
   def update
@@ -63,5 +73,9 @@ class MenuItemsController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     @order = Order.create(user_id: current_user.id)
     session[:order_id] = @order.id
+  end
+  
+  def order_item_params
+    return params.permit(:order_id, :menu_item_id, :quantity)
   end
 end

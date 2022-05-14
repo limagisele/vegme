@@ -20,6 +20,10 @@ class MenuItemPolicy
     return @user
   end
 
+  def add_to_order?
+    return @user && @user.has_role?(:customer)
+  end
+
   def create?
     return @user && @user.has_role?(:restaurant)
   end

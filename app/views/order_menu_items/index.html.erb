@@ -35,5 +35,6 @@
     </table>
     
     <h6>Total Order: $<%= @order.order_total_price %></h6>
+    
     <%= link_to 'Back to Menu', menu_path(@order_items[0].menu_item.user_id) %>
 <% end %>
