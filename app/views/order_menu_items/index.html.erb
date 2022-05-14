@@ -36,8 +36,21 @@
     
     <h6>Total Order: $<%= @order.order_total_price %></h6>
     <div class='btn-toolbar'>
-        <%= link_to 'Submit Order', submit_order_path, class: 'btn btn-success btn-sm me-3 my-3' %>
+        <%# <%= link_to 'Submit Order', submit_order_path, class: 'btn btn-success btn-sm me-3 my-3' %>
         <%= button_to('Delete Order', destroy_all_items_path, class: 'btn btn-danger btn-sm my-3', method: :delete) %>
     </div>
+
+    <button data-stripe="payment" class="btn btn-success btn-sm me-3 my-3">Complete Order <%= number_to_currency(@order.order_total_price) %></button>
     <%= link_to 'Back to Menu', menu_path(@order_items[0].menu_item.user_id) %>
+    
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <script>
+        document.querySelector("[data-stripe='payment']").addEventListener("click", () => {
+            const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
+            stripe.redirectToCheckout({
+                sessionId: "<%= @session_id %>"
+            });
+        });
+    </script>
 <% end %>

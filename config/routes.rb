@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'payments/success'
   root 'menu_items#index'
   get 'menu_items', to: 'menu_items#index'
   get 'menu_items/menu/:id', to: 'menu_items#show_menu', as: 'menu'
@@ -12,10 +13,11 @@ Rails.application.routes.draw do
 
   get 'order_menu_items', to: 'order_menu_items#index'
   post 'order_menu_items', to: 'order_menu_items#create'
-  post 'order_menu_items/submit', to: 'order_menu_items#submit_order', as: 'submit_order'
   patch 'order_menu_items/:id', to: 'order_menu_items#update'
   delete 'order_menu_items/delete_all', to: 'order_menu_items#destroy_all_items', as: 'destroy_all_items'
   delete 'order_menu_items/:id', to: 'order_menu_items#destroy'
+
+  get 'payments/success', to: 'payments#success'
 
   devise_scope :user do
     # Redirects signing out users back to sign-in
