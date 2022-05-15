@@ -92,3 +92,5 @@ gem "dotenv-rails", "~> 2.7"
 gem "stripe", "~> 6.0"
 
 gem "ultrahook", "~> 1.0"
+
+gem "faker", "~> 2.20"
