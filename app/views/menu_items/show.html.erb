@@ -1,19 +1,31 @@
-<h1>Menu Item</h1>
+<h3 class="mt-2"><%= @menu_item.user.full_name %></h3>
+<div class="card my-3 mx-auto" style="max-width: 1200px;">
+    <div class="row g-0">
+        <div class="col-md-6">
+			<%= cl_image_tag(@menu_item.photo.key, crop: 'fill', width: 750, cloud_name: ENV['CLOUDINARY_CLOUD_NAME'], class: "img-fluid rounded-start") if @menu_item.photo.attached? %>
+		</div>
+		<div class="col-md-6">
+			<div class="card-body">
+				<h4 class="card-title"><%= @menu_item.name %></h4>
+				<p class="card-text">$<%= @menu_item.price %></p>
+				<p class="card-text"><%= @menu_item.description %></p>
+				<% if user_signed_in? && current_user.has_role?(:restaurant) %>
+					<p class="card-text text-muted">Availability: <%= @menu_item.available? ? "Item is currently available for order." : "Item is currently SOLD OUT." %></p>
+				<% end %>
+				<% if user_signed_in? && current_user.has_role?(:customer) %>
+					<%= form_with(model: @order_item, url: add_to_order_path) do |f| %>
+						<%= f.hidden_field :menu_item_id, value: @menu_item.id %>
+						<%= f.number_field :quantity, value: 1, in: 1..20 %>
+						<%= f.submit 'Add to Order' %>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
 
-<%= cl_image_tag(@menu_item.photo.key, crop: 'scale', width: 200, cloud_name: ENV['CLOUDINARY_CLOUD_NAME']) if @menu_item.photo.attached? %>
-<p><%= @menu_item.name %></p>
-<p><%= @menu_item.description %></p>
-<p><%= @menu_item.price %></p>
-
-<% if user_signed_in? && current_user.has_role?(:customer) %>
-    <%= form_with(model: @order_item, url: add_to_order_path) do |f| %>
-        <%= f.hidden_field :menu_item_id, value: @menu_item.id %>
-        <%= f.number_field :quantity, value: 1, in: 1..20 %>
-        <%= f.submit 'Add to Order' %>
-    <% end %>
-<% end %>
-<div class="btn-toolbar mt-3">
-    <%= link_to 'Edit', edit_menu_item_path(@menu_item), class: 'btn btn-outline-warning me-2' if policy(@menu_item).edit? %>
+<div class="btn-toolbar my-4">
+    <%= link_to 'Edit', edit_menu_item_path(@menu_item), class: 'btn btn-outline-warning me-3' if policy(@menu_item).edit? %>
     <%= button_to('Delete', @menu_item, class: 'btn btn-outline-danger', method: :delete, form: { data: { turbo_confirm: "Do you want to delete '#{@menu_item.name}' from your menu?" } }) if policy(@menu_item).destroy? %>
 </div>
 <%= link_to 'Back to Menu', menu_path(@menu_item.user.id) %>
