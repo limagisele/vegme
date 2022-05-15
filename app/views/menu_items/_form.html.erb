@@ -1,30 +1,44 @@
 <%= form_with(model: @menu_item, data: {turbo: false}) do |f| %>
-    <fieldset class="mb-2">
-        <%= f.label :name %>
-        <%= f.text_field :name %>
+    <fieldset mb-2">
+        <%= f.label :name, class: "form-label" %>
+        <%= f.text_field :name, class: "form-control" %>
     </fieldset>
+    
     <fieldset class="mb-2">
-        <%= f.label :description %>
-        <%= f.text_field :description %>
+        <%= f.label :description, class: "form-label" %>
+        <%= f.text_field :description, class: "form-control" %>
     </fieldset>
+    
     <fieldset class="mb-2">
-        <%= f.label :price %>
-        <%= f.number_field :price %>
+        <%= f.label :price, class: "form-label" %>
+        <%= f.number_field :price, class: "form-control", minimum: 0 %>
     </fieldset>
+    
     <fieldset class="mb-2">
         <%= f.radio_button :available, true %>
-        <%= f.label :available, "Item is available" %>
+        <%= f.label :available, "Item is currently available" %>
+    </fieldset>
+    <fieldset>
         <%= f.radio_button :available, false %>
         <%= f.label :not_available, "Item is SOLD OUT" %>
     </fieldset>
+    
     <fieldset>
         <%= f.hidden_field :user_id, value: current_user.id %>
     </fieldset>
-    <fieldset class="mb-2">
+
+    <% if @menu_item.photo.attached? %>
+        <fieldset class="my-4">
+            <%= cl_image_tag @menu_item.photo.key, transformation: ["media_lib_thumb"], cloud_name: ENV['CLOUDINARY_CLOUD_NAME'] %>
+        </fieldset>
+    <% end %>
+    
+    <fieldset class="my-4">
         <%= f.label :photo %>
         <%= f.file_field :photo %>
     </fieldset>
+    
     <fieldset>
-        <%= f.submit%>
+        <%= f.submit class: "btn btn-outline-success mb-3" %>
     </fieldset>
 <% end %>
