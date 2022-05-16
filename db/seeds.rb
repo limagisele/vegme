@@ -42,13 +42,13 @@ customer.add_role :customer
     street = Faker::Address.street_address
     city = 'Melbourne'
     postcode = 3000
-    name1 = Faker::Food.dish
+    name1 = Faker::Food.vegetables
     description1 = Faker::Lorem.paragraph(sentence_count: 2, supplemental: false, random_sentences_to_add: 4)
     price1 = Faker::Number.within(range: 15..22)
-    name2 = Faker::Food.dish
+    name2 = Faker::Food.vegetables
     description2 = Faker::Lorem.paragraph(sentence_count: 2, supplemental: false, random_sentences_to_add: 4)
     price2 = Faker::Number.within(range: 15..22)
-    name3 = Faker::Food.dish
+    name3 = Faker::Food.vegetables
     description3 = Faker::Lorem.paragraph(sentence_count: 2, supplemental: false, random_sentences_to_add: 4)
     price3 = Faker::Number.within(range: 15..22)
     available = true
