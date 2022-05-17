@@ -6,7 +6,7 @@ class OrderMenuItemsController < ApplicationController
 
   def index
     @order_items = @order.order_menu_items
-    if user_signed_in? && current_user.has_role?(:customer) && @order_items.size != 0
+    if user_signed_in? && current_user.has_role?(:customer) && !@order_items.empty?
       session = Stripe::Checkout::Session.create(
         payment_method_types: ['card'],
         customer_email: current_user.email,
