@@ -1,59 +1,29 @@
 <h1>Restaurants</h1>
-<% if user_signed_in? && current_user.has_role?(:restaurant) %>
-    <% user = @restaurants.select { |restaurant| restaurant.id == current_user.id } %>
-    <div class="card my-4" style="max-width: 720px;">
-        <div class="row g-0">
-            <div class="col-md-5">
-                <%= cl_image_tag(user[0].menu_items.first.photo.key, transformation: [ {gravity: "auto", height: 400, width: 760, crop: "fill"}, { background: "#000000", effect: "gradient_fade", y: -0.5 }], cloud_name: ENV['CLOUDINARY_CLOUD_NAME'], class: "img-fluid rounded-start") %>      
-            </div>
-            <div class="col-md-4">
-                <div class="card-body">
-                    <h4 class="card-title"><%= user[0].full_name %></h4>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card-body">
-                    <%= link_to "Explore Menu", menu_path(user[0].id), class: "btn btn-primary" %>
-                </div>
-            </div>
-        </div>
-    </div>
-<% else %>
-    <div class="row row-cols-1 row-cols-lg-2">
-        <% @restaurants.each do |restaurant| %>
-            <div class="col">
-                <div class="card my-4" style="max-width: 720px;">
-                    <div class="row g-0">
-                        <div class="col-md-5">
-                            <%= cl_image_tag(restaurant.menu_items.first.photo.key, transformation: [ {gravity: "auto", height: 400, width: 760, crop: "fill"}, { background: "#000000", effect: "gradient_fade", y: -0.5 }], cloud_name: ENV['CLOUDINARY_CLOUD_NAME'], class: "img-fluid rounded-start") %>      
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card-body">
-                                <h5 class="card-title"><%= restaurant.full_name %></h5>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card-body">
-                                <%= link_to "Explore Menu", menu_path(restaurant.id), class: "btn btn-primary" %>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <% end %>
-    </div>
-<% end %>
+<div class="row row-cols-1 row-cols-lg-2">
+	<% @restaurants.each do |restaurant| %>
+		<div class="col">
+			<div class="card my-4" style="max-width: 720px;">
+				<div class="row g-0">
+					<div class="col-md-5">
+						<% if !restaurant.menu_items.empty? && restaurant.menu_items.first.photo.attached? %>
+							<%= cl_image_tag(restaurant.menu_items.first.photo.key, transformation: [ {gravity: "auto", height: 400, width: 760, crop: "fill"}, { background: "#000000", effect: "gradient_fade", y: -0.5 }], cloud_name: ENV['CLOUDINARY_CLOUD_NAME'], class: "img-fluid rounded-start") %>      
+						<% else %>
+							<%= cl_image_tag("no-image_f0seoy.jpg", transformation: [ {gravity: "auto", height: 150, width: 760, crop: "fill"} ], cloud_name: ENV['CLOUDINARY_CLOUD_NAME'], class: "img-fluid rounded-start") %>      
+						<% end %>
+					</div>
+					<div class="col-md-4">
+						<div class="card-body">
+							<h5 class="card-title"><%= restaurant.full_name %></h5>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="card-body">
+							<%= link_to "Explore Menu", menu_path(restaurant.id), class: "btn btn-primary" %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<% end %>
+</div>
 
-    
-  
-    <%# <div class="col-md-4">
-      <img src="..." class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-      </div>
-    </div>
-  %>

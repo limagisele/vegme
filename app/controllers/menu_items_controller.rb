@@ -6,9 +6,12 @@ class MenuItemsController < ApplicationController
   before_action :set_menu_item, only: [:show, :update, :edit, :destroy, :add_to_order]
   before_action :set_order, only: [:show_menu, :add_to_order]
 
-
   def index
-    @restaurants = Role.find_by_name('restaurant').users
+    if user_signed_in? && current_user.has_role?(:restaurant)
+      @restaurants = Role.find_by_name('restaurant').users.where(id: current_user.id)
+    else
+      @restaurants = Role.find_by_name('restaurant').users
+    end
   end
 
   def show_menu
