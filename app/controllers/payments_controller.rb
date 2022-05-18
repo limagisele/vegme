@@ -2,7 +2,8 @@ class PaymentsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:webhook]
 
   def success
-    Payment.create!(order_id: session[:order_id], status: "Successful")
+    Payment.create!(order_id: params[:orderId], status: "Successful")
+    p params
     session.delete(:order_id)
   end
 
@@ -13,5 +14,11 @@ class PaymentsController < ApplicationController
     user_id = payment.metadata.user_id
     p "Order ID:" + order_id
     p "User ID:" + user_id
+  end
+
+  private
+
+  def payment_params
+    return params.require(:orderId)
   end
 end
