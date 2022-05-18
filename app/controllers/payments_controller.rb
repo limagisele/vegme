@@ -19,6 +19,6 @@ class PaymentsController < ApplicationController
   private
 
   def payment_params
-    return params.require(:orderId)
+    return params.permit(:orderId)
   end
 end
