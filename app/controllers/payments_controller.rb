@@ -3,7 +3,6 @@ class PaymentsController < ApplicationController
 
   def success
     Payment.create!(order_id: params[:orderId], status: "Successful")
-    p params
     session.delete(:order_id)
   end
 
