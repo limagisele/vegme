@@ -27,8 +27,13 @@ class MenuItemsController < ApplicationController
   end
 
   def create
-    menu_item = MenuItem.create!(menu_item_params)
-    redirect_to menu_item
+    @menu_item = MenuItem.create(menu_item_params)
+    if @menu_item.valid?
+      redirect_to @menu_item
+    else
+      flash[:alert] = @menu_item.errors.full_messages.join('<br>')
+      render 'new'
+    end
   end
 
   def add_to_order
@@ -48,6 +53,9 @@ class MenuItemsController < ApplicationController
   def update
     @menu_item.update!(menu_item_params)
     redirect_to @menu_item
+  rescue
+    flash.now[:alert] = @menu_item.errors.full_messages.join('<br>')
+    render 'edit'
   end
 
   def destroy
