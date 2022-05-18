@@ -14,10 +14,10 @@
     <%= render 'shared/nav' %>
     <main class="p-3">
       <% if notice %>
-        <p class="alert alert-info" role="notice"><%= notice %></p>
+        <p class="alert alert-info" role="notice"><%= notice.html_safe %></p>
       <% end %>
       <% if alert %>
-        <p class="alert alert-danger" role="alert"><%= alert %></p>
+        <p class="alert alert-danger" role="alert"><%= alert.html_safe %></p>
       <% end %>
       <%= yield %>
     </main>
