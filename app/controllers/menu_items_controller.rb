@@ -52,7 +52,6 @@ class MenuItemsController < ApplicationController
 
   def destroy
     @restaurant_id = @menu_item.user_id
-    @menu_item.photo.purge
     @menu_item.destroy
     redirect_to menu_path(@restaurant_id)
   end
@@ -77,7 +76,7 @@ class MenuItemsController < ApplicationController
     @order = Order.create(user_id: current_user.id)
     session[:order_id] = @order.id
   end
-  
+
   def order_item_params
     return params.permit(:order_id, :menu_item_id, :quantity)
   end
