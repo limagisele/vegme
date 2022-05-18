@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_12_222802) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_18_024321) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -77,6 +77,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_12_222802) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.string "status"
+    t.integer "order_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_payments_on_order_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
@@ -117,4 +125,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_12_222802) do
   add_foreign_key "order_menu_items", "menu_items"
   add_foreign_key "order_menu_items", "orders"
   add_foreign_key "orders", "users"
+  add_foreign_key "payments", "orders"
 end
