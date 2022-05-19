@@ -9,36 +9,15 @@ require 'faker'
 
 User.destroy_all
 
-params = { customer: { email: 'cust@test.com', password: '123456', full_name: 'Anna Smith', phone: '04000400', address_attributes: { street: '3 Station St', city: 'Melbourne', postcode: 3001 } } }
-customer = User.create(params[:customer])
+params = { customer: { email: 'cust@test.com', password: '123456', full_name: 'Anna Smith', phone: '0400040004', address_attributes: { street: '3 Station St', city: 'Melbourne', postcode: 3001 } } }
+customer = User.create!(params[:customer])
 customer.add_role :customer
 
-# params1 = { restaurant1: { email: 'rest1@test.com', password: '123456', full_name: 'VeBurgers', phone: '04110411', address_attributes: { street: '120 King St', city: 'Melbourne', postcode: 3000 } } }
-# restaurant1 = User.create(params1[:restaurant1])
-# restaurant1.add_role :restaurant
-
-# params2 = { restaurant2: { email: 'rest2@test.com', password: '123456', full_name: 'Pizza Vegs', phone: '04220422', address_attributes: { street: '67 Elizabeth St', city: 'Melbourne', postcode: 3002 } } }
-# restaurant2 = User.create(params2[:restaurant2])
-# restaurant2.add_role :restaurant
-
-# params2 = { restaurant2: { email: 'rest2@test.com', password: '123456', full_name: 'Pizza Vegs', phone: '04220422', address_attributes: { street: '67 Elizabeth St', city: 'Melbourne', postcode: 3002 } } }
-# restaurant2 = User.create(params2[:restaurant2])
-# restaurant2.add_role :restaurant
-
-# params2 = { restaurant2: { email: 'rest2@test.com', password: '123456', full_name: 'Pizza Vegs', phone: '04220422', address_attributes: { street: '67 Elizabeth St', city: 'Melbourne', postcode: 3002 } } }
-# restaurant2 = User.create(params2[:restaurant2])
-# restaurant2.add_role :restaurant
-
-# restaurant1.menu_items.create(name: 'Veggie Burger', description: 'Delicious burger with chickpea patty, lettuce, tomato and BBQ sauce', price: 18, available: true)
-# restaurant1.menu_items.create(name: 'Falafel Burger', description: 'Falafel patty with hummus and salad', price: 16, available: true)
-# restaurant2.menu_items.create(name: 'Super Veggie Pizza', description: 'Vegan cheese, eggplant, mushroom, capsicum and olives', price: 15, available: false)
-# restaurant2.menu_items.create(name: 'Hawaiian Pizza', description: 'Vegan cheese, pineaple and vegan ham', price: 17, available: true)
-
 4.times do
-    email = Faker::Internet.email(domain: 'test')
+    full_name = Faker::Company.name
+    email = Faker::Internet.free_email(name: full_name)
     password = '123456'
-    full_name = Faker::Restaurant.name
-    phone = Faker::PhoneNumber.cell_phone
+    phone = Faker::Number.leading_zero_number(digits: 10)
     street = Faker::Address.street_address
     city = 'Melbourne'
     postcode = 3000
@@ -51,13 +30,17 @@ customer.add_role :customer
     name3 = Faker::Food.vegetables
     description3 = Faker::Lorem.paragraph(sentence_count: 2, supplemental: false, random_sentences_to_add: 4)
     price3 = Faker::Number.within(range: 15..22)
+    name4 = Faker::Food.vegetables
+    description4 = Faker::Lorem.paragraph(sentence_count: 2, supplemental: false, random_sentences_to_add: 4)
+    price4 = Faker::Number.within(range: 15..22)
     available = true
     params = { restaurant: { email: email, password: password, full_name: full_name, phone: phone, address_attributes: { street: street, city: city, postcode: postcode } } }
-    restaurant = User.create(params[:restaurant])
+    restaurant = User.create!(params[:restaurant])
     restaurant.add_role :restaurant
-    restaurant.menu_items.create(name: name1, description: description1, price: price1, available: available)
-    restaurant.menu_items.create(name: name2, description: description2, price: price2, available: available)
-    restaurant.menu_items.create(name: name3, description: description3, price: price3, available: available)
+    restaurant.menu_items.create!(name: name1, description: description1, price: price1, available: available)
+    restaurant.menu_items.create!(name: name2, description: description2, price: price2, available: available)
+    restaurant.menu_items.create!(name: name3, description: description3, price: price3, available: available)
+    restaurant.menu_items.create!(name: name4, description: description4, price: price4, available: available)
 end
 
 puts "Users: #{User.count}"

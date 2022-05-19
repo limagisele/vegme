@@ -6,10 +6,10 @@
 			<div class="card my-4" style="max-width: 720px;">
 				<div class="row g-0">
 					<div class="col-md-5">
-						<% if !restaurant.menu_items.empty? && restaurant.menu_items.first.photo.attached? %>
-							<%= cl_image_tag(restaurant.menu_items.first.photo.key, transformation: [ {gravity: "auto", height: 400, width: 760, crop: "fill"}, { background: "#000000", effect: "gradient_fade", y: -0.5 }], cloud_name: ENV['CLOUDINARY_CLOUD_NAME'], class: "img-fluid rounded-start") %>      
+						<% if !restaurant.menu_items.empty? %>
+							<%= cl_image_tag(restaurant.menu_items.first.photo.key, transformation: [ {gravity: "auto", height: 500, width: 760, crop: "fill"}], cloud_name: ENV['CLOUDINARY_CLOUD_NAME'], class: "img-fluid rounded-start") %>      
 						<% else %>
-							<%= cl_image_tag("no-image_f0seoy.jpg", transformation: [ {gravity: "auto", height: 150, width: 760, crop: "fill"} ], cloud_name: ENV['CLOUDINARY_CLOUD_NAME'], class: "img-fluid rounded-start") %>      
+							<%= cl_image_tag("no-img_qrdx6i.png", transformation: [ {gravity: "auto", height: 500, width: 760, crop: "fill"} ], cloud_name: ENV['CLOUDINARY_CLOUD_NAME'], class: "img-fluid rounded-start") %>      
 						<% end %>
 					</div>
 					<div class="col-md-4">
