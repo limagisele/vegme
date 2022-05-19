@@ -2,9 +2,9 @@
 <%= link_to 'New Menu Item', menu_items_new_path, class: "btn btn-outline-success my-3" if policy(MenuItem).create? %>  
 
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 mt-2 mb-4">
-  <% @menu.each do |menu_item| %>
-    <div class="col">
-      <div class="card h-100">
+    <% @menu.each do |menu_item| %>
+		<div class="col">
+			<div class="card h-100">
 				<div class="ratio ratio-4x3">
 					<%= cl_image_tag(menu_item.photo.key, crop: 'fit', width: 700, cloud_name: ENV['CLOUDINARY_CLOUD_NAME'], class: "card-img-top") %>
 				</div>    
@@ -14,8 +14,8 @@
 					<%= link_to "See Details", menu_item, class: "btn btn-primary" %>
 				</div>
 			</div>
-    </div>
-  <% end %>
+		</div>
+    <% end %>
 </div>
 
 <%= link_to 'Back to Listing', root_path %>
