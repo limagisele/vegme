@@ -3,40 +3,40 @@
 <% if @order_items.empty? %>
   <p>You don't have items in your order yet!</p>
 <% else %>
-<div class="table-responsive">
-	<table class="table table-borderless">
-		<thead>
-			<tr>
-				<th scope="col">Item</th>
-				<th scope="col">Price</th>
-				<th scope="col">Quantity</th>
-				<th scope="col">Subtotal</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @order_items.each do |item| %>
+	<div class="table-responsive">
+		<table class="table table-borderless">
+			<thead>
 				<tr>
-					<td class="text-nowrap"><%= item.menu_item.name %></td>
-					<td>$<%= item.menu_item.price %></td>
-					<td>
-						<%= form_with(model: item, url: "/order_menu_items/#{item.id}") do |f| %>
-							<%= f.hidden_field :menu_item_id, value: item.menu_item.id %>
-							<%= f.number_field :quantity, value: item.quantity, in: 1..20 %>
-							<%= button_to("", order_menu_items_path(item.id), class: 'btn btn-outline-primary btn-sm bi bi-pencil') %>
-						<% end %>
-					</td>
-					<td>$<%= item.total_price %></td>
-					<td>
-						<%= form_with(model: item, url: "/order_menu_items/#{item.id}") do |f| %>
-							<%= button_to('', order_menu_items_path(item.id), class: 'btn btn-outline-danger btn-sm bi bi-trash', method: :delete) %>
-						<% end %>
-					</td>
+					<th scope="col">Item</th>
+					<th scope="col">Price</th>
+					<th scope="col">Quantity</th>
+					<th scope="col">Subtotal</th>
 				</tr>
-			<% end %>
-		</tbody>
-	</table>
-</div>
-<hr>
+			</thead>
+			<tbody>
+				<% @order_items.each do |item| %>
+					<tr>
+						<td class="text-nowrap"><%= item.menu_item.name %></td>
+						<td>$<%= item.menu_item.price %></td>
+						<td>
+							<%= form_with(model: item, url: "/order_menu_items/#{item.id}") do |f| %>
+								<%= f.hidden_field :menu_item_id, value: item.menu_item.id %>
+								<%= f.number_field :quantity, value: item.quantity, in: 1..20 %>
+								<%= button_to("", order_menu_items_path(item.id), class: 'btn btn-outline-primary btn-sm bi bi-pencil') %>
+							<% end %>
+						</td>
+						<td>$<%= item.total_price %></td>
+						<td>
+							<%= form_with(model: item, url: "/order_menu_items/#{item.id}") do |f| %>
+								<%= button_to('', order_menu_items_path(item.id), class: 'btn btn-outline-danger btn-sm bi bi-trash', method: :delete) %>
+							<% end %>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<hr>
 
 	<h6>Total Order: $<%= @order.order_total_price %></h6>
 
