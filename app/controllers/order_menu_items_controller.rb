@@ -5,7 +5,7 @@ class OrderMenuItemsController < ApplicationController
   before_action :set_order_items, only: [:index, :destroy_all_items]
 
   def index
-    @order_items = @order.order_menu_items
+    # Adding Stripe Checkout session only for customers with items added in the order
     if user_signed_in? && current_user.has_role?(:customer) && !@order_items.empty?
       session = Stripe::Checkout::Session.create(
         payment_method_types: ['card'],
@@ -16,7 +16,7 @@ class OrderMenuItemsController < ApplicationController
           images: ['https://res.cloudinary.com/limagisele/image/upload/v1652509895/VegMe_ljjeph.png'],
           amount: (@order.order_total_price * 100).to_i,
           currency: 'aud',
-          quantity: 1,
+          quantity: 1
         }],
         payment_intent_data: {
           metadata: {
@@ -53,26 +53,29 @@ class OrderMenuItemsController < ApplicationController
 
   private
 
-  def set_order_items
-    @order_items = @order.order_menu_items
-  end
-  
-  def set_order_item
-    @order_item = @order.order_menu_items.find(params[:id])
-  end
-
-  def order_item_params
-    return params.require(:order_menu_item).permit(:order_id, :menu_item_id, :quantity)
-  end
-
-  def order_params
-    return params.require(:order).permit(:user_id)
-  end
-
+  # Setting a session-based order for the current user when accessing the 'View Order' page
   def set_order
     @order = Order.find(session[:order_id])
   rescue ActiveRecord::RecordNotFound
     @order = Order.create(user_id: current_user.id)
     session[:order_id] = @order.id
   end
+
+  def set_order_items
+    # Creating a variable with all order_menu_items included in the current order
+    # Querying only the required attributes for view and actions
+    @order_items = @order.order_menu_items.select(:id, :menu_item_id, :quantity)
+  end
+
+  def set_order_item
+    # Creating a variable with a specific order_menu_item from the current order
+    # Querying only the required attributes for view and actions
+    @order_item = @order.order_menu_items.select(:id, :order_id, :menu_item_id, :quantity).find(params[:id])
+  end
+
+  # Strong params for creating/updating an instance of OrderMenuItem
+  def order_item_params
+    return params.require(:order_menu_item).permit(:order_id, :menu_item_id, :quantity)
+  end
+
 end

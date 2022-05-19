@@ -14,10 +14,4 @@ class PaymentsController < ApplicationController
     p "Order ID:" + order_id
     p "User ID:" + user_id
   end
-
-  private
-
-  def payment_params
-    return params.permit(:orderId)
-  end
 end

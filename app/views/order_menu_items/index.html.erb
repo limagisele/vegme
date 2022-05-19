@@ -1,59 +1,59 @@
 <h1>Order</h1>
+
 <% if @order_items.empty? %>
-    <p>You don't have items in your order yet!</p>
+  <p>You don't have items in your order yet!</p>
 <% else %>
-    <div class="table-responsive">
-        <table class="table table-borderless">
-            <thead>
-                <tr>
-                <th scope="col">Item</th>
-                <th scope="col">Price</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Subtotal</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% @order_items.each do |item| %>
-                    <tr>
-                    <td class="text-nowrap"><%= item.menu_item.name %></td>
-                    <td>$<%= item.menu_item.price %></td>
-                    <td>
-                        <%= form_with(model: item, url: "/order_menu_items/#{item.id}") do |f| %>
-                            <%= f.hidden_field :menu_item_id, value: item.menu_item.id %>
-                            <%= f.number_field :quantity, value: item.quantity, in: 1..20 %>
-                            <%= button_to("", order_menu_items_path(item.id), class: 'btn btn-outline-primary btn-sm bi bi-pencil') %>
-                        <% end %>
-                    </td>
-                    <td>$<%= item.total_price %></td>
-                    <td>
-                        <%= form_with(model: item, url: "/order_menu_items/#{item.id}") do |f| %>
-                            <%= button_to('', order_menu_items_path(item.id), class: 'btn btn-outline-danger btn-sm bi bi-trash', method: :delete) %>
-                        <% end %>
-                    </td>
-                    </tr>
-                <% end %>
-            </tbody>
-        </table>
-    </div>
-    <hr>
+<div class="table-responsive">
+	<table class="table table-borderless">
+		<thead>
+			<tr>
+				<th scope="col">Item</th>
+				<th scope="col">Price</th>
+				<th scope="col">Quantity</th>
+				<th scope="col">Subtotal</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @order_items.each do |item| %>
+				<tr>
+					<td class="text-nowrap"><%= item.menu_item.name %></td>
+					<td>$<%= item.menu_item.price %></td>
+					<td>
+						<%= form_with(model: item, url: "/order_menu_items/#{item.id}") do |f| %>
+							<%= f.hidden_field :menu_item_id, value: item.menu_item.id %>
+							<%= f.number_field :quantity, value: item.quantity, in: 1..20 %>
+							<%= button_to("", order_menu_items_path(item.id), class: 'btn btn-outline-primary btn-sm bi bi-pencil') %>
+						<% end %>
+					</td>
+					<td>$<%= item.total_price %></td>
+					<td>
+						<%= form_with(model: item, url: "/order_menu_items/#{item.id}") do |f| %>
+							<%= button_to('', order_menu_items_path(item.id), class: 'btn btn-outline-danger btn-sm bi bi-trash', method: :delete) %>
+						<% end %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+<hr>
 
-    <h6>Total Order: $<%= @order.order_total_price %></h6>
+	<h6>Total Order: $<%= @order.order_total_price %></h6>
 
-    <div class='btn-toolbar'>
-        <button data-stripe="payment" class="btn btn-success btn-sm me-3 my-3">Complete Order <%= number_to_currency(@order.order_total_price) %></button>
-        <%= button_to('Delete Order', destroy_all_items_path, class: 'btn btn-danger btn-sm my-3', method: :delete) %>
-    </div>
+	<div class='btn-toolbar'>
+		<button data-stripe="payment" class="btn btn-success btn-sm me-3 my-3">Complete Order <%= number_to_currency(@order.order_total_price) %></button>
+		<%= button_to('Delete Order', destroy_all_items_path, class: 'btn btn-danger btn-sm my-3', method: :delete) %>
+	</div>
 
-    <%= link_to 'Back to Menu', menu_path(@order_items[0].menu_item.user_id) %>
-    
-    <script src="https://js.stripe.com/v3/"></script>
-
-    <script>
-        document.querySelector("[data-stripe='payment']").addEventListener("click", () => {
-            const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
-            stripe.redirectToCheckout({
-                sessionId: "<%= @session_id %>"
-            });
-        });
-    </script>
+	<%= link_to 'Back to Menu', menu_path(@order_items[0].menu_item.user_id) %>
+	
+	<script src="https://js.stripe.com/v3/"></script>
+	<script>
+		document.querySelector("[data-stripe='payment']").addEventListener("click", () => {
+			const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
+			stripe.redirectToCheckout({
+					sessionId: "<%= @session_id %>"
+			});
+		});
+	</script>
 <% end %>
