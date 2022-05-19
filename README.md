@@ -1,4 +1,5 @@
 ## VegMe 
+
 ### [Deployed App](https://vegme-app.herokuapp.com/)
 
 ### Problem identified
@@ -52,7 +53,9 @@ It is worth mentioning that the platform is not dedicated to vegan restaurants, 
   * Payment confirmation
 
 ### Documentation
+
 #### [GitHub Repo](https://github.com/limagisele/vegme.git)
+
 #### [Kanban Board](https://trello.com/b/0oDVuJjG/vegme-app)  
   This project was managed and tracked using a Trello kanban board.  
   From the start it was defined which labels would be used to classify tasks by levels of priorities (based on the user stories) and estimated time required for completion, then different lists were created to represent different stages for each task/card.  
@@ -185,7 +188,7 @@ In the case of the models generated in this project, they all inherit from Appli
 * Active_storage_attachments & Active_storage_blobs  
   One-to-one relationship. When an active_storage_attachment is created it is already connected to it associated active_storage_blob, so that is represented in the ERD as a mandatory relation on both sides and a blob can only be linked to one attachment and an attachment is only associated with one blob.
 
-### Project Models and Associations
+### Project Models and Active Record Associations
 The bi-direction associations in this projects are listed below:
 
 #### belongs_to and has_one relations:
