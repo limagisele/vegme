@@ -40,7 +40,7 @@ class MenuItemsController < ApplicationController
     if @menu_item.valid?
       redirect_to @menu_item
     else
-      flash[:alert] = @menu_item.errors.full_messages.join('<br>')
+      flash.now[:alert] = @menu_item.errors.full_messages.join('<br>')
       render 'new'
     end
   end
