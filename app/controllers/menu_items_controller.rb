@@ -9,13 +9,13 @@ class MenuItemsController < ApplicationController
   def index
     if user_signed_in? && current_user.has_role?(:restaurant)
       # Querying user only with required fields for the view (full_name and id)
-      # Eager loading used to query Users and MenuItems all at once
+      # Eager loading used to query Users, MenuItems, and Attachment all at once
 
       # When the user is a restaurant, only its restaurant will be displayed
-      @restaurants = User.select(:full_name, :id).includes(:menu_items).where(id: current_user.id)
+      @restaurants = User.select(:full_name, :id).includes(menu_items: [:photo_attachment]).where(id: current_user.id)
     else
       # When user is a customer, all restaurants will be displayed
-      @restaurants = Role.find_by_name('restaurant').users.select(:full_name, :id).includes(:menu_items)
+      @restaurants = Role.find_by_name('restaurant').users.select(:full_name, :id).includes(menu_items: [:photo_attachment])
     end
   end
 
@@ -23,7 +23,7 @@ class MenuItemsController < ApplicationController
     # Finding the requested restaurant
     # Querying only the attributes required in the view file
     # Using eager loading to query User, MenuItems and Attachment at once to minimise db calls in the view loop
-    @restaurant = User.select(:full_name, :id).includes(menu_items: {photo_attachment: [:blob] }).find(params[:id])
+    @restaurant = User.select(:full_name, :id).includes(menu_items: [:photo_attachment]).find(params[:id])
     # Defining an array with all menu_items associated with the chosen restaurant
     @menu = @restaurant.menu_items
   end
