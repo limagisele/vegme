@@ -2,10 +2,30 @@
 
 ### [Deployed App](https://vegme-app.herokuapp.com/)
 
-### Problem identified
+### Table of Contents
+1. [Problem Identified](#problem-identified)
+   1. Why solve it?
+2. [Purpose](#problem-identified)
+3. [Target Audience](#target-audience)
+4. [User Stories](#user-stories)
+5. [Features](#features)
+6. [Documentation](#documentation)
+   1. GitHub Repo
+   2. Kanban Board
+   3. Sitemap
+   4. Wireframes
+   5. Screenshots
+7. [Tech Stack](#tech-stack)
+8. [Third Party Services](#third-party-services)
+9.  [High-Level Components (Abstractions)](#high-level-components-abstractions)
+10. [Database Relations with ERD references](#database-relations-with-erd-references)
+11. [Project Models and Active Record Associations](#project-models-and-active-record-associations)
+12. [References](#references)
+
+### Problem Identified
 The current food delivery applications available in the market do not present vegan-friendly labelling for the meals sold in their platform. That brings lots of limitations for the public looking for food within that dietary requirement. In some instances, the food is not made exclusively with plant-based ingredients, but it is marked as vegan-friendly, in other cases the food is indeed vegan but not labelled at all, creating uncertainty. As consequence, consumers of plant-based food can spend unnecessary amount of time searching for a restaurant they feel comfortable ordering from, or even face frustration when their orders turnout to be different than they had expected.
 
-### Related Opportunity
+#### Why solve it?
 The problem mentioned above can be turned into an significant opportunity for restaurants to tap into the growing market of, not only vegan consumers, but all consumers opting to reduce meat or any animal product from their diet. 
 
 > In Australia, 42% of people are eating less meat or none at all in 2019.  
@@ -70,46 +90,71 @@ It is worth mentioning that the platform is not dedicated to vegan restaurants, 
 
   Each card had a defined due date based on the initial assessment, however they were flexible as some unpredicted dependencies of cards could be identified later on. Additionally, each card had its own checklist of tasks containing all key tasks required to completed the card, to be used as a verification step prior to confirm the card is completed.
 
-![Trello Board](app/assets/images/trello-board.png)
+![Trello Board](docs/trello-board.png)
 
 #### Sitemap
-  
-![Sitemap](app/assets/images/sitemap.drawio.png)
+![Sitemap](docs/sitemap.drawio.png)
 
 #### Wireframes  
   
 ##### Home Page
-![Home Page](app/assets/images/Home.png)  
+![Home Page](docs/wireframes/Home.png)  
 
 ##### Sign Up, Log In & Forgot Password Pages
-
-![Sign Up/Log In & Forgot Password Pages](app/assets/images/Log%20In%20_%20Sig%20Up.png)
+![Sign Up/Log In & Forgot Password Pages](docs/wireframes/Log%20In%20_%20Sig%20Up.png)
 
 ##### Menu Items Page
-
-![Menu Page](app/assets/images/Menu%20Items.png)
+![Menu Page](docs/wireframes/Menu%20Items.png)
 
 ##### Item Details Page
-
-![Item Details](app/assets/images/Item%20Details.png)
+![Item Details](docs/wireframes/Item%20Details.png)
 
 ##### New & Edit Item Pages  
-
-![New & Edit Item Pages](app/assets/images/New%20_%20Edit%20Item.png)
+![New & Edit Item Pages](docs/wireframes/New%20_%20Edit%20Item.png)
 
 ##### Order Page
-
-![Order Page](app/assets/images/Order.png)
+![Order Page](docs/wireframes/Order.png)
 
 ##### Payment Confirmation Page
-
-![Payment Confirmation Page](app/assets/images/Payment%20Confirmation.png)
+![Payment Confirmation Page](docs/wireframes/Payment%20Confirmation.png)
   
 #### ERD & Database Schema Design
-
-![Database Schema](app/assets/images/ERD.png)
+![Database Schema](docs/ERD.png)
 
 #### Screenshots
+
+##### Home Page
+![Home](docs/screenshots/restaurants.png)
+
+##### Sign Up Page
+![Sign Up](docs/screenshots/signup.png)
+
+##### Log In Page
+![Log In](docs/screenshots/login.png)
+
+##### Restaurant's Menu Page
+![Restaurant's Menu](docs/screenshots/menu.png)
+
+##### Item Details Page (Customer Only)
+![Menu Item](docs/screenshots/menu-item.png)
+
+##### Order Page (Customer Only)
+![Order](docs/screenshots/order.png)
+
+##### Checkout Page (Customer Only)
+![Checkout](docs/screenshots/checkout.png)
+
+##### Payment Confirmation Page (Customer Only)
+![Payment Confirmation](docs/screenshots/payment.png)
+
+##### New Menu Item Page (Restaurant Only)
+![New Menu Item](docs/screenshots/new-item.png)
+
+##### Menu Item Actions Page (Restaurant Only)
+![Menu Item Actions](docs/screenshots/menu-item-actions.png)
+
+##### Edit Menu Item Page (Restaurant Only)
+![Edit Menu Item](docs/screenshots/edit-item.png)
 
 ### Tech Stack
 * Languages: HTML, CSS, Ruby
