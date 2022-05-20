@@ -6,7 +6,6 @@ class MenuItem < ApplicationRecord
     validates :name, presence: true, length: { minimum: 3, maximum: 50 }
     validates :description, presence: true, length: { minimum: 30, maximum: 400 }
     validates :price, presence: true, numericality: { in: 1..99 }
-    validates :available, presence: true
     after_commit :add_default_photo, on: [:create, :update]
 
     private
