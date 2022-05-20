@@ -90,71 +90,71 @@ It is worth mentioning that the platform is not dedicated to vegan restaurants, 
 
   Each card had a defined due date based on the initial assessment, however they were flexible as some unpredicted dependencies of cards could be identified later on. Additionally, each card had its own checklist of tasks containing all key tasks required to completed the card, to be used as a verification step prior to confirm the card is completed.
 
-![Trello Board](docs/trello-board.png)
+![Trello Board](app/assets/images/trello-board.png)
 
 #### Sitemap
-![Sitemap](docs/sitemap.drawio.png)
+![Sitemap](app/assets/images/sitemap.drawio.png)
 
 #### Wireframes  
   
 ##### Home Page
-![Home Page](docs/wireframes/Home.png)  
+![Home Page](app/assets/images/wireframes/Home.png) 
 
 ##### Sign Up, Log In & Forgot Password Pages
-![Sign Up/Log In & Forgot Password Pages](docs/wireframes/Log%20In%20_%20Sig%20Up.png)
+![Sign Up/Log In & Forgot Password Pages](app/assets/images/wireframes/Log%20In%20_%20Sig%20Up.png)
 
 ##### Menu Items Page
-![Menu Page](docs/wireframes/Menu%20Items.png)
+![Menu Page](app/assets/images/wireframes/Menu%20Items.png)
 
 ##### Item Details Page
-![Item Details](docs/wireframes/Item%20Details.png)
+![Item Details](app/assets/images/wireframes/Item%20Details.png)
 
 ##### New & Edit Item Pages  
-![New & Edit Item Pages](docs/wireframes/New%20_%20Edit%20Item.png)
+![New & Edit Item Pages](app/assets/images/wireframes/New%20_%20Edit%20Item.png)
 
 ##### Order Page
-![Order Page](docs/wireframes/Order.png)
+![Order Page](app/assets/images/wireframes/Order.png)
 
 ##### Payment Confirmation Page
-![Payment Confirmation Page](docs/wireframes/Payment%20Confirmation.png)
+![Payment Confirmation Page](app/assets/images/wireframes/Payment%20Confirmation.png)
   
 #### ERD & Database Schema Design
-![Database Schema](docs/ERD.png)
+![Database Schema](app/assets/images/ERD.png)
 
 #### Screenshots
 
 ##### Home Page
-![Home](docs/screenshots/restaurants.png)
+![Home](app/assets/images/screenshots/restaurants.png)
 
 ##### Sign Up Page
-![Sign Up](docs/screenshots/signup.png)
+![Sign Up](app/assets/images/screenshots/signup.png)
 
 ##### Log In Page
-![Log In](docs/screenshots/login.png)
+![Log In](app/assets/images/screenshots/login.png)
 
 ##### Restaurant's Menu Page
-![Restaurant's Menu](docs/screenshots/menu.png)
+![Restaurant's Menu](app/assets/images/screenshots/menu.png)
 
 ##### Item Details Page (Customer Only)
-![Menu Item](docs/screenshots/menu-item.png)
+![Menu Item](app/assets/images/screenshots/menu-item.png)
 
 ##### Order Page (Customer Only)
-![Order](docs/screenshots/order.png)
+![Order](app/assets/images/screenshots/order.png)
 
 ##### Checkout Page (Customer Only)
-![Checkout](docs/screenshots/checkout.png)
+![Checkout](app/assets/images/screenshots/checkout.png)
 
 ##### Payment Confirmation Page (Customer Only)
-![Payment Confirmation](docs/screenshots/payment.png)
+![Payment Confirmation](app/assets/images/screenshots/payment.png)
 
 ##### New Menu Item Page (Restaurant Only)
-![New Menu Item](docs/screenshots/new-item.png)
+![New Menu Item](app/assets/images/screenshots/new-item.png)
 
 ##### Menu Item Actions Page (Restaurant Only)
-![Menu Item Actions](docs/screenshots/menu-item-actions.png)
+![Menu Item Actions](app/assets/images/screenshots/menu-item-actions.png)
 
 ##### Edit Menu Item Page (Restaurant Only)
-![Edit Menu Item](docs/screenshots/edit-item.png)
+![Edit Menu Item](app/assets/images/screenshots/edit-item.png)
 
 ### Tech Stack
 * Languages: HTML, CSS, Ruby
