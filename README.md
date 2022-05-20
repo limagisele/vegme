@@ -74,40 +74,40 @@ It is worth mentioning that the platform is not dedicated to vegan restaurants, 
 
 #### Sitemap
   
-  ![Sitemap](app/assets/images/sitemap.drawio.png)
+![Sitemap](app/assets/images/sitemap.drawio.png)
 
 #### Wireframes  
   
-  ##### Home Page
-  ![Home Page](app/assets/images/Home.png)  
+##### Home Page
+![Home Page](app/assets/images/Home.png)  
 
-  ##### Sign Up, Log In & Forgot Password Pages
+##### Sign Up, Log In & Forgot Password Pages
 
-  ![Sign Up/Log In & Forgot Password Pages](app/assets/images/Log%20In%20_%20Sig%20Up.png)
+![Sign Up/Log In & Forgot Password Pages](app/assets/images/Log%20In%20_%20Sig%20Up.png)
 
-  ##### Menu Items Page
+##### Menu Items Page
 
-  ![Menu Page](app/assets/images/Menu%20Items.png)
+![Menu Page](app/assets/images/Menu%20Items.png)
 
-  ##### Item Details Page
+##### Item Details Page
 
-  ![Item Details](app/assets/images/Item%20Details.png)
+![Item Details](app/assets/images/Item%20Details.png)
 
-  ##### New & Edit Item Pages  
+##### New & Edit Item Pages  
 
-  ![New & Edit Item Pages](app/assets/images/New%20_%20Edit%20Item.png)
+![New & Edit Item Pages](app/assets/images/New%20_%20Edit%20Item.png)
 
-  ##### Order Page
+##### Order Page
 
-  ![Order Page](app/assets/images/Order.png)
+![Order Page](app/assets/images/Order.png)
 
-  ##### Payment Confirmation Page
+##### Payment Confirmation Page
 
-  ![Payment Confirmation Page](app/assets/images/Payment%20Confirmation.png)
+![Payment Confirmation Page](app/assets/images/Payment%20Confirmation.png)
   
 #### ERD & Database Schema Design
 
-  ![Database Schema](app/assets/images/ERD.png)
+![Database Schema](app/assets/images/ERD.png)
 
 #### Screenshots
 
